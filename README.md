@@ -1,4 +1,4 @@
-<h1>ItemFactory<img src="https://github.com/kaidoMC/ItemFactory/blob/main/icon.png" height="64" width="64"  align="left"></img></h1><br/>
+<h1>ItemFactory<img src="https://github.com/kaidoMC/ItemFactory/blob/master/icon.png" height="64" width="64"  align="left"></img></h1><br/>
 
 # Features:
 You can create an item with:
