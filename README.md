@@ -23,15 +23,12 @@ The interface includes buttons:
 - Edit - Edit the item you are holding in your hand.
 
 # Note:
-- When creating items please do not enter item IDs that do not exist. <br/>
-  If you've done that by mistake, go to `PocketMine-MP/players` <br/>
-  Find the name of the player who created the item that doesn't exist and delete that file. <br/>
   If you still don't understand and have problems, you can contact me directly.
 - The plugin has a built-in FormAPI virion, you don't need to download it.
 
 # Future features:
 - [ ] Add API for plugin?
-- [ ] Allows editing more item parameters
+- [ ] Allows editing more item parameters.
 - [ ] And many other features recommended by plugin users, etc.
 
 # Contact me:

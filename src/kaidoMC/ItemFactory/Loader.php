@@ -7,13 +7,11 @@ namespace kaidoMC\ItemFactory;
 use pocketmine\Player;
 
 use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
 
 use pocketmine\utils\TextFormat;
 
 use pocketmine\plugin\PluginBase;
-
-use pocketmine\item\enchantment\Enchantment;
-use pocketmine\item\enchantment\EnchantmentInstance;
 
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
@@ -21,8 +19,14 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 
+use pocketmine\network\mcpe\convert\ItemTranslator;
+
+use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\enchantment\EnchantmentInstance;
+
 use kaidoMC\ItemFactory\libs\jojoe77777\FormAPI\SimpleForm;
 use kaidoMC\ItemFactory\libs\jojoe77777\FormAPI\CustomForm;
+
 
 class Loader extends PluginBase
 {
@@ -90,7 +94,14 @@ class Loader extends PluginBase
 				return;
 			}
 
-			$item = Item::get((int) $itemId[0]);
+			try {
+				$item = ItemFactory::fromStringSingle($itemId[0]);
+				ItemTranslator::getInstance()->toNetworkId((int) $itemId[0], (int) $itemId[1]);
+			} catch (\InvalidArgumentException $e) {
+				$sender->sendMessage(TextFormat::RED . "The selected Item ID does not exist.");
+				return;
+			}
+
 			$item->setDamage((int) $itemId[1]);
 			$item->setCount((int) $result[1]);
 
@@ -140,6 +151,7 @@ class Loader extends PluginBase
 				}
 			}
 			$sender->getInventory()->addItem($item);
+			$sender->sendMessage(TextFormat::GREEN  . "Item has been successfully initialized.");
 		});
 		$nForm->setTitle("Create");
 		$nForm->addInput("ID & Meta (Example: 1:0)");
