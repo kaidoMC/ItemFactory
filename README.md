@@ -1,5 +1,7 @@
 <h1>ItemFactory<img src="https://github.com/kaidoMC/ItemFactory/blob/master/icon.png" height="64" width="64"  align="left"></img></h1><br/>
 
+[![](https://poggit.pmmp.io/shield.state/ItemFactory)](https://poggit.pmmp.io/p/ItemFactory) [![](https://poggit.pmmp.io/shield.api/ItemFactory)](https://poggit.pmmp.io/p/ItemFactory) [![](https://poggit.pmmp.io/shield.dl.total/ItemFactory)](https://poggit.pmmp.io/p/ItemFactory) [![](https://poggit.pmmp.io/shield.dl/ItemFactory)](https://poggit.pmmp.io/p/ItemFactory)
+
 You can create an item with:
 - CustomName
 - Lore
@@ -29,7 +31,7 @@ If the plugin has any issues please contact me via the platforms below:
 - Facebook: https://www.facebook.com/kaidomc12345
 - Youtube: https://youtube.com/c/KAIDOMC
  
-# License:
+# License
 [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html)
 
 # Others
