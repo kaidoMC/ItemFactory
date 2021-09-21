@@ -23,7 +23,7 @@ The interface includes buttons:
 - Create - To create an item of your choice.
 - Clone - Copy the item you are holding in your hand.
 - Edit - Edit the item you are holding in your hand.
-# Contact me
+# Contact
 If the plugin has any issues please contact me via the platforms below:
 - Discord: @kaidojoestar272004#7124
 - Facebook: https://www.facebook.com/kaidomc12345
