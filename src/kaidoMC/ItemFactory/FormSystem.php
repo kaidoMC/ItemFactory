@@ -172,7 +172,7 @@ class FormSystem
             return;
         }
 
-        if($this->getPlayer()->getInventory()->canAddItem($item)){
+        if($sender->getInventory()->canAddItem($item)){
             $sender->getInventory()->addItem($item);
             $sender->sendMessage(TextFormat::GREEN  . "The item in your hand has been cloned and added to your inventory.");
         } else {
