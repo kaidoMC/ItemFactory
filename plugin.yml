@@ -1,20 +1,17 @@
 ---
 name: ItemFactory
-version: 1.0.0
+version: 1.0.2
 author: kaidoMC
-api: [3.0.0, 3.22.5]
+api: [3.0.0, 3.22.4]
 main: kaidoMC\ItemFactory\Loader
 website: https://github.com/kaidoMC
-description: Create, edit, copy items of your choice.
 commands:
-  itemfactory:
-    aliases: [ifa]
-    permission: itemfactory.use
+  ifa:
+    permission: ifa.use
     description: "Create, edit, copy items of your choice."
-    usage: "/itemfactory or /ifa - Open the ItemFactory management interface"
-    permission-message: "§r§cYou do not have permission to use this feature!§r"
+    usage: "/ifa - Open the ItemFactory management interface"
 permissions:
-  itemfactory.use:
+  ifa.use:
     default: op
     description: "Permissions allow create, edit, copy items of your choice."
 ...
