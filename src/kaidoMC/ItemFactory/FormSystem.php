@@ -72,18 +72,18 @@ class FormSystem
                return;
             }
             $itemId = explode(":", $result[1]);
-	    if(!isset($itemId[0]) or !isset($itemId[1]))
+	    if(!isset($itemId[0]) || !isset($itemId[1]))
 	    {
 		$sender->sendMessage(TextFormat::RED . "Wrong format try again.");
                 return;
 	    }
 		
-            if(!is_numeric($itemId[0]) or !is_numeric($itemId[1])) {
+            if(!is_numeric($itemId[0]) || !is_numeric($itemId[1])) {
                 $sender->sendMessage(TextFormat::RED . "Wrong format try again.");
                 return;
             }
 
-            if(!is_numeric($result[2]) or (int) $result[2] < 1) {
+            if(!is_numeric($result[2]) || (int) $result[2] < 1) {
                 $sender->sendMessage(TextFormat::RED . "Wrong format try again or the number of items in trouble.");
                 return;
             }
