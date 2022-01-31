@@ -72,6 +72,12 @@ class FormSystem
                return;
             }
             $itemId = explode(":", $result[1]);
+	    if(!isset($itemId[0]) or !isset($itemId[1]))
+	    {
+		$sender->sendMessage(TextFormat::RED . "Wrong format try again.");
+                return;
+	    }
+		
             if(!is_numeric($itemId[0]) or !is_numeric($itemId[1])) {
                 $sender->sendMessage(TextFormat::RED . "Wrong format try again.");
                 return;
