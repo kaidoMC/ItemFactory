@@ -15,7 +15,7 @@ namespace kaidoMC\ItemFactory;
 use kaidoMC\ItemFactory\FormSystem;
 use kaidoMC\ItemFactory\EventListener;
 
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 use pocketmine\plugin\PluginBase;
 
