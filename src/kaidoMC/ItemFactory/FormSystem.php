@@ -175,7 +175,7 @@ class FormSystem
     /**
     * @param Player $sender
     */
-    private function getFormClone($sender): void
+    private function getFormClone(Player $sender): void
     {
         $item = $sender->getInventory()->getItemInHand();
         if($item->getId() === 0) {
