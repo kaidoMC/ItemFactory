@@ -65,7 +65,7 @@ class FormSystem
     /** 
     * @param Player $sender
     */    
-    private function getFormCreate($sender): void
+    private function getFormCreate(Player $sender): void
     {
         $nForm = new CustomForm(function (Player $sender, ?array $result) {
             if($result === null) {         
