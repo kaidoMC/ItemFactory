@@ -18,10 +18,11 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
 
-use pocketmine\command\ConsoleCommandSender;
+use pocketmine\console\ConsoleCommandSender;
 
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
+use pocketmine\Server;
 
 class EventListener implements Listener
 {
@@ -47,16 +48,16 @@ class EventListener implements Listener
     {
         $player = $event->getPlayer();
         $item = $player->getInventory()->getItemInHand();
-        if($item->getNamedTag()->hasTag("KND", StringTag::class)) {
+        if($item->getNamedTag()->getTag("KND") !== null) {
             $sub_str = str_replace("{player}", $player->getName(), $item->getNamedTag()->getString("KND"));
-            $this->getPlugin()->getServer()->dispatchCommand(new ConsoleCommandSender(), $sub_str);
+            Server::getInstance()->dispatchCommand(new ConsoleCommandSender(Server::getInstance(), Server::getInstance()->getLanguage()), $sub_str);
         }
     }
     
     public function onItem(PlayerDropItemEvent $event): void
     {
-        if($event->getItem()->getNamedTag()->hasTag("canAction", StringTag::class)) {
-            $event->setCancelled(true);
+        if($event->getItem()->getNamedTag()->getTag("canAction") !== null) {
+            $event->cancel();
         }
     }
 }

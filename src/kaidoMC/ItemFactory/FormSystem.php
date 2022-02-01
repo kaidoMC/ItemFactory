@@ -12,11 +12,14 @@ declare(strict_types = 1);
 
 namespace kaidoMC\ItemFactory;
 
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 use pocketmine\item\ItemFactory;
+use pocketmine\item\Tool;
+use pocketmine\item\LegacyStringToItemParser;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\enchantment\EnchantmentInstance;
+use pocketmine\data\bedrock\EnchantmentIdMap;
 
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
@@ -69,26 +72,32 @@ class FormSystem
                return;
             }
             $itemId = explode(":", $result[1]);
-            if(!is_numeric($itemId[0]) or !is_numeric($itemId[1])) {
+	    if(!isset($itemId[0]) || !isset($itemId[1]))
+	    {
+		$sender->sendMessage(TextFormat::RED . "Wrong format try again.");
+                return;
+	    }
+		
+            if(!is_numeric($itemId[0]) || !is_numeric($itemId[1])) {
                 $sender->sendMessage(TextFormat::RED . "Wrong format try again.");
                 return;
             }
 
-            if(!is_numeric($result[2]) or (int) $result[2] < 1) {
+            if(!is_numeric($result[2]) || (int) $result[2] < 1) {
                 $sender->sendMessage(TextFormat::RED . "Wrong format try again or the number of items in trouble.");
                 return;
             }
 
             try{
-                $item = ItemFactory::fromStringSingle($itemId[0]);
+				$item = ItemFactory::getInstance()->get((int) $itemId[0],(int) $itemId[1],(int) $result[2]);
                 /** Hi guy, this line of code to check the item exists in PocketMine or not */
                 ItemTranslator::getInstance()->toNetworkId((int) $itemId[0], (int) $itemId[1]);
             } catch(\InvalidArgumentException $event) {
                 $sender->sendMessage(TextFormat::RED . "Problem: " . $event->getMessage());
                 return;
             }
-            $item->setDamage((int) $itemId[1]);
-            $item->setCount((int) $result[2]);
+            #$item->setDamage((int) $itemId[1]);
+            #$item->setCount((int) $result[2]);
 
             if($result[3] !== "false") {
                 $item->setCustomName($result[3]);
@@ -103,8 +112,8 @@ class FormSystem
                     if(!is_numeric($encId[0]) or !is_numeric($encId[1])) {
                         continue;
                     }
-                    $nEnchant = new EnchantmentInstance(Enchantment::getEnchantment((int)$encId[0]));
-                    $item->addEnchantment($nEnchant->setLevel((int)$encId[1]));
+                    $nEnchant = new EnchantmentInstance(EnchantmentIdMap::getInstance()->fromId((int)$encId[0]));
+                    $item->addEnchantment($nEnchant,((int)$encId[1]));
                 }
             }
 
@@ -120,14 +129,14 @@ class FormSystem
                                 $sender->sendMessage(TextFormat::RED . "Wrong format try again.");
                                 return;
                             }
-                            $item->setNamedTagEntry(new StringTag($sTag[1], $sTag[2]));
+                            $item->getNamedTag()->setString($sTag[1], $sTag[2]);
                         break;
                         case "1":
                             if(!is_numeric($sTag[2])) {
                                 $sender->sendMessage(TextFormat::RED . "Wrong format try again.");
                                 return;
                             }
-                            $item->setNamedTagEntry(new IntTag($sTag[1], (int)$sTag[2]));
+                            $item->getNamedTag()->setInt($sTag[1], (int)$sTag[2]);
                         break;
                         default:
                             $sender->sendMessage(TextFormat::RED . "Wrong format try again.");
@@ -137,11 +146,11 @@ class FormSystem
             }
             
             if($result[10] !== "false") {
-                $item->setNamedTagEntry(new StringTag("KND", $result[10]));
+                $item->getNamedTag()->setString("KND", $result[10]);
             }
             
             if($result[11] !== false) {
-                $item->setNamedTagEntry(new StringTag("canAction", "ToiYeuVietNam"));
+                $item->getNamedTag()->setString("canAction", "ToiYeuVietNam");
             }
             $sender->getInventory()->addItem($item);
         });
@@ -201,12 +210,13 @@ class FormSystem
                 $item->setLore(explode(",", $result[1]));
             }
             if(is_numeric($result[2])) {
-                if($item->hasEnchantment((int) $result[2])) {
+                #if($item->hasEnchantment((int) $result[2])) {
+				if($item->hasEnchantment(EnchantmentIdMap::getInstance()->fromId((int)$encId[0]))){
                     $item->removeEnchantment((int) $result[2]);
                 }
             }
             if($result[3] !== "false") {
-                if($item->getNamedTag()->hasTag($result[3])) {
+                if($item->getNamedTag()->getTag($result[3]) !== null) {
                     $item->getNamedTag()->removeTag($result[3]);
                 }
             }
@@ -222,14 +232,14 @@ class FormSystem
                                 $sender->sendMessage(TextFormat::RED . "Wrong format try again.");
                                 return;
                             }
-                            $item->setNamedTagEntry(new StringTag($sTag[1], $sTag[2]));
+                            $item->getNamedTag()->setString($sTag[1], $sTag[2]);
                         break;
                         case "1":
                             if(!is_numeric($sTag[2])) {
                                 $sender->sendMessage(TextFormat::RED . "Wrong format try again.");
                                 return;
                             }
-                            $item->setNamedTagEntry(new IntTag($sTag[1], (int)$sTag[2]));
+                            $item->getNamedTag()->setInt($sTag[1], (int)$sTag[2]);
                         break;
                         default:
                             $sender->sendMessage(TextFormat::RED . "Wrong format try again.");
@@ -238,7 +248,7 @@ class FormSystem
                 }
             }
             if($result[8] !== "false") {
-                $item->setNamedTagEntry(new StringTag("KND", $result[10]));
+                $item->getNamedTag()->setString("KND", $result[8]);
             }
             $sender->getInventory()->setItemInHand($item);
             $sender->sendMessage(TextFormat::GREEN  . "The item in your hand has some modifications.");
