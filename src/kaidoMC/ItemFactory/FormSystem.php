@@ -37,7 +37,7 @@ class FormSystem
     /**
      * @var Player $sender
      */   
-    public function getForm(Player $sender): void
+    public function getForm($sender): void
     {
         $nForm = new SimpleForm(function (Player $sender, ?int $result) {
             if($result === null) {
@@ -65,7 +65,7 @@ class FormSystem
     /** 
     * @param Player $sender
     */    
-    private function getFormCreate(Player $sender): void
+    private function getFormCreate($sender): void
     {
         $nForm = new CustomForm(function (Player $sender, ?array $result) {
             if($result === null) {         
@@ -112,8 +112,10 @@ class FormSystem
                     if(!is_numeric($encId[0]) or !is_numeric($encId[1])) {
                         continue;
                     }
-                    $nEnchant = new EnchantmentInstance(EnchantmentIdMap::getInstance()->fromId((int)$encId[0]));
-                    $item->addEnchantment($nEnchant,((int)$encId[1]));
+		    $type = EnchantmentIdMap::getInstance()->fromId((int) $encId[0]);
+		    if($type !== null){
+		     	$this->addEnchantment(new EnchantmentInstance($type, (int)$encId[1]));
+		    }
                 }
             }
 
@@ -173,7 +175,7 @@ class FormSystem
     /**
     * @param Player $sender
     */
-    private function getFormClone(Player $sender): void
+    private function getFormClone($sender): void
     {
         $item = $sender->getInventory()->getItemInHand();
         if($item->getId() === 0) {
@@ -192,7 +194,7 @@ class FormSystem
     /**
     * @param Player $sender
     */
-    private function getFormItem(Player $sender): void
+    private function getFormItem($sender): void
     {
         $item = $sender->getInventory()->getItemInHand();
         if($item->getId() === 0) {
@@ -211,7 +213,7 @@ class FormSystem
             }
             if(is_numeric($result[2])) {
                 #if($item->hasEnchantment((int) $result[2])) {
-				if($item->hasEnchantment(EnchantmentIdMap::getInstance()->fromId((int)$encId[0]))){
+				if($item->hasEnchantment(EnchantmentIdMap::getInstance()->fromId((int)$result[2]))){
                     $item->removeEnchantment((int) $result[2]);
                 }
             }
