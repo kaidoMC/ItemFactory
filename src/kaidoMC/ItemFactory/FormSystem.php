@@ -194,7 +194,7 @@ class FormSystem
     /**
     * @param Player $sender
     */
-    private function getFormItem($sender): void
+    private function getFormItem(Player $sender): void
     {
         $item = $sender->getInventory()->getItemInHand();
         if($item->getId() === 0) {
