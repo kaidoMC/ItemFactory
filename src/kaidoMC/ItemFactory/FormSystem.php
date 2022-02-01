@@ -112,8 +112,10 @@ class FormSystem
                     if(!is_numeric($encId[0]) or !is_numeric($encId[1])) {
                         continue;
                     }
-                    $nEnchant = new EnchantmentInstance(EnchantmentIdMap::getInstance()->fromId((int)$encId[0]));
-                    $item->addEnchantment($nEnchant,((int)$encId[1]));
+		    $type = EnchantmentIdMap::getInstance()->fromId((int) $encId[0]);
+		    if($type !== null){
+		     	$this->addEnchantment(new EnchantmentInstance($type, (int)$encId[1]));
+		    }
                 }
             }
 
@@ -211,8 +213,8 @@ class FormSystem
             }
             if(is_numeric($result[2])) {
                 #if($item->hasEnchantment((int) $result[2])) {
-				if($item->hasEnchantment(EnchantmentIdMap::getInstance()->fromId((int)$encId[0]))){
-                    $item->removeEnchantment((int) $result[2]);
+				if($item->hasEnchantment(EnchantmentIdMap::getInstance()->fromId((int)$result[2]))){
+                    $item->removeEnchantment(EnchantmentIdMap::getInstance()->fromId((int)$result[2]));
                 }
             }
             if($result[3] !== "false") {
