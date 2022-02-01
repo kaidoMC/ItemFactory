@@ -37,7 +37,7 @@ class FormSystem
     /**
      * @var Player $sender
      */   
-    public function getForm($sender): void
+    public function getForm(Player $sender): void
     {
         $nForm = new SimpleForm(function (Player $sender, ?int $result) {
             if($result === null) {
