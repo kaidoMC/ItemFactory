@@ -35,7 +35,7 @@ class FormSystem
 {
     
     /**
-     * @var Player $sender
+     * @param Player $sender
      */   
     public function getForm(Player $sender): void
     {
@@ -114,7 +114,7 @@ class FormSystem
                     }
 		    $type = EnchantmentIdMap::getInstance()->fromId((int) $encId[0]);
 		    if($type !== null){
-		     	$this->addEnchantment(new EnchantmentInstance($type, (int)$encId[1]));
+		     	$item->addEnchantment(new EnchantmentInstance($type, (int)$encId[1]));
 		    }
                 }
             }
