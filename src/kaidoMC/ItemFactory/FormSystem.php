@@ -35,7 +35,7 @@ class FormSystem
 {
     
     /**
-     * @var Player $sender
+     * @param Player $sender
      */   
     public function getForm(Player $sender): void
     {
