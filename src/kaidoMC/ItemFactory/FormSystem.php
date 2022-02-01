@@ -214,7 +214,7 @@ class FormSystem
             if(is_numeric($result[2])) {
                 #if($item->hasEnchantment((int) $result[2])) {
 				if($item->hasEnchantment(EnchantmentIdMap::getInstance()->fromId((int)$result[2]))){
-                    $item->removeEnchantment((int) $result[2]);
+                    $item->removeEnchantment(EnchantmentIdMap::getInstance()->fromId((int)$result[2]));
                 }
             }
             if($result[3] !== "false") {
