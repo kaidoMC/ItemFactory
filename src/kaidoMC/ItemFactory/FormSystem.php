@@ -114,7 +114,7 @@ class FormSystem
                     }
 		    $type = EnchantmentIdMap::getInstance()->fromId((int) $encId[0]);
 		    if($type !== null){
-		     	$this->addEnchantment(new EnchantmentInstance($type, (int)$encId[1]));
+		     	$item->addEnchantment(new EnchantmentInstance($type, (int)$encId[1]));
 		    }
                 }
             }
