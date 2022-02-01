@@ -248,7 +248,7 @@ class FormSystem
                 }
             }
             if($result[8] !== "false") {
-                $item->getNamedTag()->setString("KND", $result[10]);
+                $item->getNamedTag()->setString("KND", $result[8]);
             }
             $sender->getInventory()->setItemInHand($item);
             $sender->sendMessage(TextFormat::GREEN  . "The item in your hand has some modifications.");
