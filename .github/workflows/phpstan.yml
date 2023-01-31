@@ -1,11 +1,10 @@
-name: PHPStan
-on: [ push ]
+name: phpstan
+on: [push]
 jobs:
   build:
-    name: Run Plugin Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-20.04 # pmmp-php-build doesn't work on ubuntu-latest yet
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
-      - name: Run PHPStan
-        uses: nxtlvlsoftware/run-phpstan-pmmp-action@v1
+    - uses: actions/checkout@v3
+    - uses: nxtlvlsoftware/run-phpstan-pmmp-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
