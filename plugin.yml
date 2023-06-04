@@ -2,7 +2,7 @@
 name: ItemFactory
 version: 1.0.2
 author: kaidoMC
-api: [4.0.0]
+api: [5.0.0]
 main: kaidoMC\ItemFactory\Loader
 website: https://github.com/kaidoMC
 commands:

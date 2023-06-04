@@ -5,4 +5,10 @@ branches:
 projects:
   ItemFactory:
     path: ""
+    libs:
+      - src: jojoe77777/FormAPI/libFormAPI
+        version: 2.1.1
+      libs:
+      - src: NhanAZ/libBedrock/libBedrock
+        version: 1.0.0
 ...
