@@ -21,18 +21,12 @@ use pocketmine\Server;
 
 class EventListener implements Listener {
 
-	/**
-	 * @var Loader $plugin
-	 */
-	private $plugin;
+	private Loader $plugin;
 
 	public function __construct(Loader $plugin) {
 		$this->plugin = $plugin;
 	}
 
-	/**
-	 * @return Loader
-	 */
 	public function getPlugin(): Loader {
 		return $this->plugin;
 	}

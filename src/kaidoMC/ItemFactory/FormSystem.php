@@ -15,21 +15,14 @@ namespace kaidoMC\ItemFactory;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
 use NhanAZ\libBedrock\StringToItem;
-use pocketmine\block\BlockTypeIds;
 use pocketmine\player\Player;
-use pocketmine\item\ItemFactory;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\data\bedrock\EnchantmentIdMap;
-use pocketmine\item\ItemTypeIds;
 use pocketmine\item\VanillaItems;
 use pocketmine\utils\TextFormat;
-use pocketmine\network\mcpe\convert\ItemTranslator;
 
 class FormSystem {
 
-	/**
-	 * @param Player $sender
-	 */
 	public function getForm(Player $sender): void {
 		$nForm = new SimpleForm(function (Player $sender, ?int $result) {
 			if ($result === null) {
@@ -54,9 +47,6 @@ class FormSystem {
 		$sender->sendForm($nForm);
 	}
 
-	/**
-	 * @param Player $sender
-	 */
 	private function getFormCreate(Player $sender): void {
 		$nForm = new CustomForm(function (Player $sender, ?array $result) {
 			if ($result === null) {
@@ -159,9 +149,6 @@ class FormSystem {
 		$sender->sendForm($nForm);
 	}
 
-	/**
-	 * @param Player $sender
-	 */
 	private function getFormClone(Player $sender): void {
 		$item = $sender->getInventory()->getItemInHand();
 		if ($item->equals(VanillaItems::AIR())) {
@@ -177,9 +164,6 @@ class FormSystem {
 		}
 	}
 
-	/**
-	 * @param Player $sender
-	 */
 	private function getFormItem(Player $sender): void {
 		$item = $sender->getInventory()->getItemInHand();
 		if ($item->equals(VanillaItems::AIR())) {
