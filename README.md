@@ -13,6 +13,6 @@ The interface includes buttons:
 - Edit - Edit the item you are holding in your hand.
 
 # Contact me
-- Discord: @kaidojoestar272004#7124 or https://discord.gg/j2X83ujT6c
-- Facebook: https://www.facebook.com/kaidomc12345 or @NhanAZ#9115
+- Discord: @kaidojoestar272004#7124 or https://discord.gg/j2X83ujT6c or @NhanAZ#9115
+- Facebook: https://www.facebook.com/kaidomc12345
 - Youtube: https://youtube.com/c/KAIDOMC
