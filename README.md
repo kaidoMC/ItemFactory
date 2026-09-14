@@ -11,6 +11,7 @@ The interface includes buttons:
 - Create - To create an item of your choice.
 - Clone - Copy the item you are holding in your hand.
 - Edit - Edit the item you are holding in your hand.
+- Remove - Remove the item you are holding in your hand.
 
 # Contact me
 - Discord: @kaidojoestar272004#7124 or https://discord.gg/j2X83ujT6c or @NhanAZ#9115

@@ -38,12 +38,16 @@ class FormSystem {
 				case 2:
 					$this->getFormItem($sender);
 					break;
+				case 3:
+					$this->removeItem($sender);
+					break;
 			}
 		});
 		$nForm->setTitle("Items");
 		$nForm->addButton("CREATE");
 		$nForm->addButton("CLONE");
 		$nForm->addButton("EDIT");
+		$nForm->addButton("REMOVE");
 		$sender->sendForm($nForm);
 	}
 
@@ -162,6 +166,17 @@ class FormSystem {
 		} else {
 			$sender->sendMessage(TextFormat::RED . "Your inventory doesn't have enough space to add items.");
 		}
+	}
+
+	private function removeItem(Player $sender): void {
+		$item = $sender->getInventory()->getItemInHand();
+		if ($item->equals(VanillaItems::AIR())) {
+			$sender->sendMessage(TextFormat::RED . "Can't be done if you don't have the item on hand.");
+			return;
+		}
+
+		$sender->getInventory()->setItemInHand(VanillaItems::AIR());
+		$sender->sendMessage(TextFormat::GREEN . "The item in your hand has been removed.");
 	}
 
 	private function getFormItem(Player $sender): void {
